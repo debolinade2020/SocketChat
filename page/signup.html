@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup Page</title>
+     <style>
+          body {
+	margin: 0;
+	padding: 0;
+	background-color: #f2f2f2;
+	font-family: Arial, sans-serif;
+}
+
+.signup-form {
+	width: 400px;
+	margin: 50px auto;
+	padding: 30px;
+	background-color: #fff;
+	box-shadow: 0 0 20px rgba(0,0,0,0.2);
+	border-radius: 5px;
+}
+
+h2 {
+	margin: 0 0 30px;
+	text-align: center;
+}
+
+form input {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 3px;
+	background-color: #f2f2f2;
+}
+
+form button {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	background-color: #4CAF50;
+	color: #fff;
+	cursor: pointer;
+}
+
+form button:hover {
+	background-color: #3e8e41;
+}
+
+form p {
+	margin-top: 20px;
+	text-align: center;
+}
+
+form a {
+	color: #4CAF50;
+	text-decoration: none;
+}
+
+form a:hover {
+	color: #3e8e41;
+}
+
+     </style>
+</head>
+<body>
+	<div class="signup-form">
+		<h2>Sign Up</h2>
+		<form>
+			<input type="text" placeholder="Full Name" required>
+			<input type="email" placeholder="Email Address" required>
+			<input type="password" placeholder="Password" required>
+			<input type="password" placeholder="Confirm Password" required>
+			<button type="submit">Sign Up</button>
+		</form>
+		<p>Already have an account? <a href="index.html">Log in</a></p>
+	</div>
+</body>
+<script>
+    const form = document.querySelector('form');
+    const fullName = document.querySelector('input[type="text"]');
+    const email = document.querySelector('input[type="email"]');
+    const password = document.querySelector('input[type="password"]');
+    const confirmPassword = document.querySelectorAll('input[type="password"]')[1];
+    const submitButton = document.querySelector('button[type="submit"]');
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Check if full name is empty
+        if (fullName.value === '') {
+            alert('Please enter your full name.');
+            fullName.focus();
+            return false;
+        }
+        
+        // Check if email is valid
+        if (!isEmailValid(email.value)) {
+            alert('Please enter a valid email address.');
+            email.focus();
+            return false;
+        }
+        
+        // Check if password is at least 8 characters long
+        if (password.value.length < 8) {
+            alert('Please enter a password that is at least 8 characters long.');
+            password.focus();
+            return false;
+        }
+        
+        // Check if confirm password matches password
+        if (confirmPassword.value !== password.value) {
+            alert('Please confirm your password correctly.');
+            confirmPassword.focus();
+            return false;
+        }
+        
+        // Submit the form if all validation checks pass
+        alert('Form submitted successfully!');
+        form.submit();
+        window.location.href = "index.html";
+
+    });
+    
+    // Function to check if email is valid
+    function isEmailValid(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+</script>
+</html>

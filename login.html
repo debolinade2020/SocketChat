@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login and Signup</title>
+     <style>
+          .login-container, .signup-container {
+               width: 50%;
+               margin: 0 auto;
+               text-align: center;
+          }
+
+          .login-container h1, .signup-container h1 {
+               font-size: 30px;
+               margin-bottom: 20px;
+          }
+
+          .login-container input, .signup-container input {
+               display: block;
+               margin: 0 auto;
+               padding: 10px;
+               width: 70%;
+               margin-bottom: 20px;
+          }
+
+          .login-container button, .signup-container button {
+               display: block;
+               margin: 0 auto;
+               padding: 10px 20px;
+               background-color: #4CAF50;
+               color: white;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+          }
+
+          .logout-container {
+               display: none;
+               width: 50%;
+               margin: 0 auto;
+               text-align: center;
+          }
+
+          .logout-container h1 {
+               font-size: 30px;
+               margin-bottom: 20px;
+          }
+
+          .logout-container button {
+               display: block;
+               margin: 0 auto;
+               padding: 10px 20px;
+               background-color: #f44336;
+               color: white;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+          }
+
+     </style>
+</head>
+<body>
+     <div class="login-container">
+          <h1>Login Form</h1>
+          <form>
+               <input type="text" placeholder="Username" name="username">
+               <input type="password" placeholder="Password" name="password">
+               <button type="submit">Login</button>
+          </form>
+          <p>Don't have an account? <a href="signup.html" onclick="showSignup()">Sign up</a></p>
+     </div>
+
+     <div class="signup-container" style="display:none">
+          <h1>Sign up Form</h1>
+          <form>
+               <input type="text" placeholder="Username" name="username">
+               <input type="email" placeholder="Email" name="email">
+               <input type="password" placeholder="Password" name="password">
+               <button type="submit">Sign up</button>
+          </form>
+          <p>Already have an account? <a href="index.html" onclick="showLogin()">Login</a></p>
+     </div>
+
+     <div class="logout-container">
+          <h1>Logout Form</h1>
+          <form>
+               <button type="submit">Logout</button>
+          </form>
+     </div>
+
+     <script>
+          const loginContainer = document.querySelector('.login-container');
+          const signupContainer = document.querySelector('.signup-container');
+          const logoutContainer = document.querySelector('.logout-container');
+          const loginForm = document.querySelector('.login-container form');
+          const signupForm = document.querySelector('.signup-container form');
+          const logoutForm = document.querySelector('.logout-container form');
+
+          // Define an array of users
+     const users = [
+     { username: 'boseahana2003@gmail.com', password: 'momo@12345' },
+     { username: 'user2', password: 'pass2' },
+     { username: 'user3', password: 'pass3' },
+     ];
+
+     loginForm.addEventListener('submit', (e) => {
+     e.preventDefault();
+
+     // Get the values of the username and password inputs
+     const username = loginForm.username.value;
+     const password = loginForm.password.value;
+
+     // Find the user with the matching username and password
+     const user = users.find((u) => u.username === username && u.password === password);
+
+     if (user) {
+     // Show the logout container and hide the login container
+     loginContainer.style.display = 'none';
+     logoutContainer.style.display = 'block';
+     } else {
+     // Display an error message if the username or password is incorrect
+     alert('Invalid username or password. Please try again.');
+     }
+     });
+
+     logoutForm.addEventListener('submit', (e) => {
+     e.preventDefault();
+
+     // Show the login container and hide the logout container
+     loginContainer.style.display = 'block';
+     logoutContainer.style.display = 'none';
+     });
+
+    </script>
+</body>
+</html>
